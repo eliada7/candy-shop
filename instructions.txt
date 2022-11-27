@@ -1,0 +1,13 @@
+— set for the current session:
+SET FOREIGN_KEY_CHECKS=0;
+— set globally:
+SET GLOBAL FOREIGN_KEY_CHECKS=0;
+
+Now we can INSERT or UPDATE rows in our table without triggering a foreign key constraint fails.
+
+After we are done with the manipulation query, we can set the FOREIGN_KEY_CHECKS active again by setting its value to 1:
+
+— set for the current session:
+SET FOREIGN_KEY_CHECKS=1;
+— set globally:
+SET GLOBAL FOREIGN_KEY_CHECKS=1;

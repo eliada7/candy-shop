@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Add New Candy</h1>
+
+    <div id="result"></div>
+
+    <form id="form" method="post">
+      <input type="text" name="name" placeholder="Name" /><br />
+      <input type="text" name="price" placeholder="Price" /><br />
+
+      <select name="categories" id="categories">
+        <option value="Gummies">Gummies</option>
+        <option value="Lollipops">Lollipops</option>
+        <option value="Caramel">Caramel</option></select
+      ><br />
+      <input type="submit" name="submit" value="Insert" />
+    </form>
+    <script>
+      document
+        .getElementById('form')
+        .addEventListener('submit', function (event) {
+          // Prevent the page to 'refresh'
+          //event.preventDefault();
+          // let form = document.getElementById('form');
+          let form = this;
+
+          fetch('new-candy.php', {
+            method: 'post',
+            body: new FormData(form),
+          })
+            .then((res) => res.text())
+            .then(function (result) {
+              // Once AJAX call is done
+              console.log(result);
+
+              if (result)
+                document.getElementById('result').innerHTML =
+                  "<span style='color:green'>" + result + '</span>';
+              else {
+                let errors =
+                  "<span style='color:red'>" + result + '</span><br>';
+              }
+            });
+        });
+    </script>
+  </body>
+</html>
